@@ -13,9 +13,10 @@
         "deploy": "npm run build --prefix client && npm start --prefix server",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-  }
-  
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "morgan": "^1.10.0"
+    }
+}
