@@ -1,6 +1,7 @@
 const express = require("express");
 const serverless = require("serverless-http");
-
+const launchesRouter = require('./routes/launches/launches.router');
+const planetsRouter = require('./routes/planets/planets.router');
 // Create an instance of the Express app
 const app = express();
 
@@ -16,6 +17,8 @@ router.get("/", (req, res) => {
 
 // Use the router to handle requests to the `/.netlify/functions/api` path
 app.use(`/.netlify/functions/api`, router);
+app.use(`/.netlify/functions/api/launches`, launchesRouter);
+app.use(`/.netlify/functions/api/planets`, planetsRouter);
 
 // Export the app and the serverless function
 module.exports = app;
