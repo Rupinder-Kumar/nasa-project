@@ -3,15 +3,11 @@ const cors = require('cors');
 const serverless = require("serverless-http");
 const launchesRouter = require('./routes/launches/launches.router');
 const planetsRouter = require('./routes/planets/planets.router');
-const { loadPLanetsData } = require('./models/planets.model');
+const { loadPlanetsDataSync } = require('./models/planets.model');
+const app = require('./app');
 // Create an instance of the Express app
-const app = express();
 
-async function startServer () {
-    await loadPLanetsData();
-}
-
-startServer();
+loadPlanetsDataSync();
 // Create a router to handle routes
 const router = express.Router();
 
