@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 const serverless = require("serverless-http");
 const launchesRouter = require('./routes/launches/launches.router');
 const planetsRouter = require('./routes/planets/planets.router');
@@ -19,6 +20,7 @@ router.get("/", (req, res) => {
 app.use(cors({
     origin: ['http://localhost:3000', 'https://nasa-mc.netlify.app']
 }));
+app.use(express.json());
 app.use(`/.netlify/functions/api`, router);
 app.use(`/.netlify/functions/api/launches`, launchesRouter);
 app.use(`/.netlify/functions/api/planets`, planetsRouter);
