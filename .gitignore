@@ -42,6 +42,7 @@ client/build
 
 # Dependency directories
 node_modules/
+functions/
 server/public/
 jspm_packages/
 client/build
