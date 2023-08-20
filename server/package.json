@@ -7,7 +7,7 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "watch": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "deploy": "node src/server.js"
   },
   "keywords": [],
   "author": "",
