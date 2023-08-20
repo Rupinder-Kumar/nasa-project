@@ -7,7 +7,11 @@ const { loadPLanetsData } = require('./models/planets.model');
 // Create an instance of the Express app
 const app = express();
 
-await loadPLanetsData();
+async function startServer () {
+    await loadPLanetsData();
+}
+
+startServer();
 // Create a router to handle routes
 const router = express.Router();
 
