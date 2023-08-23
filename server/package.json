@@ -7,9 +7,9 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "watch": "nodemon src/server.js",
-    "deploy": "NODE_OPTIONS=--openssl-legacy-provider & --max-old-space-size=8192 ./node_modules/.bin/netlify-lambda serve src",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider & --max-old-space-size=8192 ./node_modules/.bin/netlify-lambda serve src",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider & --max-old-space-size=8192 ./node_modules/.bin/netlify-lambda build src",
+    "deploy": "NODE_OPTIONS=--openssl-legacy-provider & NODE_OPTIONS=--max-old-space-size=8192 ./node_modules/.bin/netlify-lambda serve src",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider & NODE_OPTIONS=--max-old-space-size=8192 ./node_modules/.bin/netlify-lambda serve src",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider & NODE_OPTIONS=--max-old-space-size=8192 ./node_modules/.bin/netlify-lambda build src",
     "cluster": "pm2 start src/server.js -i max"
   },
   "keywords": [],
