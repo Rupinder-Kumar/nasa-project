@@ -10,6 +10,9 @@
     "deploy": "NODE_OPTIONS=\"--max_old_space_size=8192 --openssl-legacy-provider\" ./node_modules/.bin/netlify-lambda serve src",
     "start": "NODE_OPTIONS=\"--max_old_space_size=8192 --openssl-legacy-provider\" ./node_modules/.bin/netlify-lambda serve src",
     "build": "NODE_OPTIONS=\"--max_old_space_size=8192 --openssl-legacy-provider\" ./node_modules/.bin/netlify-lambda build src",
+    // "deploy": "NODE_OPTIONS=\"--max_old_space_size=8192 --openssl-legacy-provider\" npm run server",
+    // "start": "NODE_OPTIONS=\"--max_old_space_size=8192 --openssl-legacy-provider\" serve -s ../server/public",
+    // "build": "NODE_OPTIONS=\"--max_old_space_size=8192 --openssl-legacy-provider\" build src",
     "cluster": "pm2 start src/server.js -i max"
   },
   "keywords": [],
