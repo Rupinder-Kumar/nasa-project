@@ -2,11 +2,11 @@
 const launchesDatabase = require('./launches.mongo');
 const planets = require('./planets.mongo');
 
-let latestFlightNumber = 100;
+const DEFAULT_FLIGHT_NUMBER = 100;
 
 const launch = {
     flightNumber: 100,
-    mission:'Kepler Exploration X',
+    mission: 'Kepler Exploration X',
     rocket: 'Explore IS1',
     launchDate: new Date('Decement 27, 2030'),
     target: 'Kepler-442 b',
@@ -21,11 +21,19 @@ function existsLaunchWithId(launchId) {
     return launchesDatabase.has(launchId);
 }
 
+async function getLatestFlightNumber() {
+    const latestLaunch = await launchesDatabase.findOne().sort('-flightNumber');
+    if (!latestLaunch) {
+        return DEFAULT_FLIGHT_NUMBER;
+    }
+    return latestLaunch.flightNumber;
+}
+
 
 async function getAllLaunches() {
-    return await launchesDatabase.find({},{
-        '__v': 0,
+    return await launchesDatabase.find({}, {
         '_id': 0,
+        '__v': 0,
     });
 }
 
@@ -34,25 +42,26 @@ async function saveLaunch(launch) {
         keplerName: launch.target
     });
 
-    if(!planet) {
+    if (!planet) {
         throw new Error('No Matching planet found')
     }
 
-    await launchesDatabase.updateOne({
+    await launchesDatabase.findOneAndUpdate({
         flightNumber: launch.flightNumber
     }, launch, {
         upsert: true,
     });
 }
 
-function addNewLaunch(launch) {
-    latestFlightNumber++;
-    launchesDatabase.set(latestFlightNumber, Object.assign(launch, {
-        flightNumber: latestFlightNumber,
-        customers: ['ZTM','NASA'],
+async function scheduleNewLaunch(launch) {
+    const newFlightNumber = await getLatestFlightNumber() + 1;
+    const newLaunch = Object.assign(launch, {
+        flightNumber: newFlightNumber,
+        customers: ['ZTM', 'NASA'],
         upcoming: true,
         success: true,
-    }));
+    });
+    await saveLaunch(newLaunch);
 }
 
 function abortLaunchById(launchId) {
@@ -62,10 +71,9 @@ function abortLaunchById(launchId) {
     return aborted;
 }
 
-
 module.exports = {
     existsLaunchWithId,
     getAllLaunches,
-    addNewLaunch,
+    scheduleNewLaunch,
     abortLaunchById
 }
