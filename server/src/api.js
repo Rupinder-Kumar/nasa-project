@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 
 // Use the router to handle requests to the `/.netlify/functions/api` path
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://nasa-mc.netlify.app']
+    origin: ['http://localhost:8000', 'https://nasa-mc.netlify.app']
 }));
 app.use(express.json());
 app.use(`/.netlify/functions/api`, router);

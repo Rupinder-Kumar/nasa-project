@@ -1,5 +1,6 @@
-const API_URL = process.env.NODE_ENV === 'production' ? "https://nasamc-api.netlify.app/.netlify/functions/api" :'http://localhost:8000';
+const API_URL = window.location.origin === 'http://localhost:8000' || 'http://localhost:3000' ? 'http://localhost:8000' : "https://nasamc-api.netlify.app/.netlify/functions/api";
 // Load planets and return as JSON.
+console.log(process.env);
 async function httpGetPlanets() {
   const response = await fetch(`${API_URL}/planets`);
   return await response.json()

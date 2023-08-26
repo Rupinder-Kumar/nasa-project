@@ -7,7 +7,7 @@ const launchesRouter = require('./routes/launches/launches.router');
 
 const app = express();
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://nasa-mc.netlify.app']
+    origin: ['http://localhost:8000', 'https://nasa-mc.netlify.app']
 }));
 app.use(morgan('combined'));
 app.use(express.json());
