@@ -1,4 +1,4 @@
-const API_URL = window.location.origin === 'http://localhost:8000' || 'http://localhost:3000' ? 'http://localhost:8000' : "https://nasamc-api.netlify.app/.netlify/functions/api";
+const API_URL = window.location.origin === 'http://localhost:8000' || 'http://localhost:3000' ? 'http://localhost:8000/v1' : "https://nasamc-api.netlify.app/.netlify/functions/api/v1";
 // Load planets and return as JSON.
 console.log(process.env);
 async function httpGetPlanets() {
