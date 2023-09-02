@@ -32,7 +32,7 @@ function isHabitablePlanet(planet) {
         });
 }
 
-function loadPLanetsData() {
+function loadPlanetsData() {
     return new Promise((resolve, reject) => {
 
     fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'kepler_data.csv'))
@@ -79,7 +79,7 @@ async function savePlanet(planet) {
 }
 
 module.exports = {
-    loadPLanetsData,
+    loadPlanetsData,
     getAllPlanets,
     loadPlanetsDataSync
 }
